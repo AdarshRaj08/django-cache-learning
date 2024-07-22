@@ -18,14 +18,17 @@ from django.contrib import admin
 from django.urls import path
 from cacheapp import views
 from django.views.decorators.cache import cache_page
-
+from lowLevelCacheApi_App import views as viewsapi
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',views.home),
     path('profile/',views.profile),
-    # this is the way to provide catching to the particular url 
+    # this is the way to provide caching to the particular url 
     path('profilee/',cache_page(60)(views.profile)),
+
+    # low-level-cache-api
+    path('lowlevelcache/',viewsapi.home),
 
 ]

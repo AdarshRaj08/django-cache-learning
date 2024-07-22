@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'cacheapp',
+    'lowLevelCacheApi_App',
 ]
 
 # here we added one middleware before commonmiddleware and after commonmiddleware
@@ -51,6 +52,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    
 ]
 
 ROOT_URLCONF = 'cachelearn.urls'
@@ -130,25 +132,25 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # ################ Cache based on the database ###################################3
 
-# CACHE_MIDDLEWARE_SECONDS = 90
-
-# CACHES = {
-#     'default':{
-#         'BACKEND':'django.core.cache.backends.db.DatabaseCache',
-#         'LOCATION':'enroll_cache',                # the name of the database table NOTE -> name that's not already being used in your database
-#     }
-# }
-
-# ############ Cache on local file system ##############
-
 CACHE_MIDDLEWARE_SECONDS = 90
 
 CACHES = {
-    'default' : {
-        'BACKEND':'django.core.cache.backends.filebased.FileBasedCache',
-        'LOCATION':'D:\Django\cachelearn\cache'
+    'default':{
+        'BACKEND':'django.core.cache.backends.db.DatabaseCache',
+        'LOCATION':'lowLevelCacheApi_App',                # the name of the database table NOTE -> name that's not already being used in your database
     }
 }
+
+# ############ Cache on local file system ##############
+
+# CACHE_MIDDLEWARE_SECONDS = 90
+
+# CACHES = {
+#     'default' : {
+#         'BACKEND':'django.core.cache.backends.filebased.FileBasedCache',
+#         'LOCATION':'D:\Django\cachelearn\cache'
+#     }
+# }
 
 
 # ############ Cache on local memory ############################
